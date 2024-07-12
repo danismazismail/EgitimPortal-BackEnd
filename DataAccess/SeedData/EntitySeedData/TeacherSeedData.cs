@@ -18,12 +18,12 @@ namespace DataAccess.SeedData.EntitySeedData
                 (
                     new Teacher
                     {
-                        Id = "2e57881d-cb72-4c88-b22e-a0f3dae265d6",
+                        Id = Guid.Parse("2e57881d-cb72-4c88-b22e-a0f3dae265d6"),
                         FirstName = "Sina Emre",
                         LastName = "Bekar",
                         BirthDate = new DateTime(1996, 01, 23),
                         Email = "sinaemre.bekar@bilgeadam.com",
-                        AppUserId = "2b72352f-a6c3-4b5f-8677-cb5fcaec34b1"
+                        AppUserId = Guid.Parse("2b72352f-a6c3-4b5f-8677-cb5fcaec34b1")
                     }
                 );
         }

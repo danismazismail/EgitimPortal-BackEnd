@@ -39,7 +39,7 @@ namespace Core.Entities.Concrete
         [NotMapped]
         public IFormFile? Image { get; set; }
         [Required]
-        public string ClassroomID { get; set; }
+        public Guid ClassroomID { get; set; }
         public ClassRoom ClassRoom { get; set; }
     }
 }

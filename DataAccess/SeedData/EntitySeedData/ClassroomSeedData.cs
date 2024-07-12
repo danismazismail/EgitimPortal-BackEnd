@@ -17,10 +17,10 @@ namespace DataAccess.SeedData.EntitySeedData
                 (
                     new ClassRoom
                     {
-                        Id = "50162998-279b-41b8-a2c2-7e5e40315498",
+                        Id = Guid.Parse("50162998-279b-41b8-a2c2-7e5e40315498"),
                         ClassroomName = "Yzl-8150",
                         Description = "320 saat .NET Full Stack Yazılım Uzmanlığı Eğitimi",
-                        TeacherId = "2e57881d-cb72-4c88-b22e-a0f3dae265d6"
+                        TeacherId = Guid.Parse("2e57881d-cb72-4c88-b22e-a0f3dae265d6")
                     }
                 );
         }

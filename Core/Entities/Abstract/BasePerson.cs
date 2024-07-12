@@ -10,7 +10,7 @@ namespace Core.Entities.Abstract
     public class BasePerson : BaseEntity
     {
         [Required]
-        public string AppUserId { get; set; }
+        public Guid AppUserId { get; set; }
         [Required]
         [MaxLength(100)]
         [MinLength(2)]

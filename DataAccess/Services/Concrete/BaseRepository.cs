@@ -1,64 +1,79 @@
-﻿using Core.Entities.Abstract;
+﻿using Core.Consts;
+using Core.Entities.Abstract;
+using DataAccess.Context.ApplicationContext;
 using DataAccess.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Services.Concrete
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
-        public BaseRepository()
+        private readonly AppDbContext _context;
+        private readonly DbSet<T> _table;
+
+        public BaseRepository(AppDbContext context)
         {
-            
-        }
-        public Task<bool> AddAsync(T entity)
-        {
-            throw new NotImplementedException();
+            _context = context;
+            _table = context.Set<T>();
         }
 
-        public Task<bool> UpdateAsync(T entity)
+        public async Task<bool> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _table.AddAsync(entity);
+            return await SaveAsync();
         }
 
-        public Task<bool> DeleteAsync(T entity)
+        public async Task<bool> UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            entity.UpdatedDate = DateTime.Now;
+            entity.Status = Status.Modified;
+            _table.Update(entity);
+            return await SaveAsync();
         }
 
-        public Task<bool> SaveAsync()
+        public async Task<bool> DeleteAsync(T entity)
         {
-            throw new NotImplementedException();
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = Status.Passive;
+            _table.Update(entity);
+            return await SaveAsync();
         }
 
-        public Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> SaveAsync()
+        => await _context.SaveChangesAsync() > 0 ? true : false;
 
-        public Task<T> GetByIdAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
+        => await _table.AnyAsync(expression);
 
-        public Task<T> GetByDefaultAsync(Expression<Func<T, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<T> GetByIdAsync(Guid id)
+        => await _table.FirstOrDefaultAsync(x => x.Status != Status.Passive && x.Id == id);
 
-        public Task<ICollection<T>> GetByDefaultsAsync(Expression<Func<T, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<T> GetByDefaultAsync(Expression<Func<T, bool>> expression)
+        => await _table.FirstOrDefaultAsync(expression);
 
-        public Task<ICollection<TResult>> GetFilteredListAsync<TResult>(Expression<Func<T, TResult>> select, Expression<Func<T, bool>> where = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> join = null)
+        public async Task<ICollection<T>> GetByDefaultsAsync(Expression<Func<T, bool>> expression)
+        => await _table.Where(expression).ToListAsync();
+
+        public async Task<ICollection<TResult>> GetFilteredListAsync<TResult>
+            (
+                Expression<Func<T, TResult>> select, 
+                Expression<Func<T, bool>> where = null, 
+                Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, 
+                Func<IQueryable<T>, IIncludableQueryable<T, object>> join = null
+            )
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = _table;
+
+            if(join != null)
+                query=join(query);
+            if(where != null)
+                query = query.Where(where);
+            if(orderBy != null)
+                return await orderBy(query).Select(select).ToListAsync();
+
+            return await query.Select(select).ToListAsync();
         }
     }
 }

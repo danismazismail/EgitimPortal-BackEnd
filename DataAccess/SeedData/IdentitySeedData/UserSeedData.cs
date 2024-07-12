@@ -17,7 +17,7 @@ namespace DataAccess.SeedData.IdentitySeedData
             var hasher = new PasswordHasher<AppUser>();
             var admin = new AppUser
             {
-                Id = "60bb4000-b9c3-4326-90ab-cb36ed4630b1",
+                Id = Guid.Parse("60bb4000-b9c3-4326-90ab-cb36ed4630b1"),
                 FirstName = "Yönetici",
                 LastName = "Admin",
                 BirthDate = new DateTime(2000, 01, 01),
@@ -29,7 +29,7 @@ namespace DataAccess.SeedData.IdentitySeedData
             };
             var customerManager = new AppUser
             {
-                Id = "d1fc3486-c6fd-47df-963a-bf7805b11216",
+                Id = Guid.Parse("d1fc3486-c6fd-47df-963a-bf7805b11216"),
                 FirstName = "Pelin",
                 LastName = "Özer Serdar",
                 BirthDate = new DateTime(1994, 05, 06),
@@ -41,7 +41,7 @@ namespace DataAccess.SeedData.IdentitySeedData
             };
             var teacher = new AppUser
             {
-                Id = "2b72352f-a6c3-4b5f-8677-cb5fcaec34b1",
+                Id = Guid.Parse("2b72352f-a6c3-4b5f-8677-cb5fcaec34b1"),
                 FirstName = "Sina Emre",
                 LastName = "Bekar",
                 BirthDate = new DateTime(1996, 01, 23),
@@ -53,7 +53,7 @@ namespace DataAccess.SeedData.IdentitySeedData
             };
             var student1 = new AppUser
             {
-                Id = "676452dd-8a1c-4747-8252-9ba2642917ea",
+                Id = Guid.Parse("676452dd-8a1c-4747-8252-9ba2642917ea"),
                 FirstName = "Dicle",
                 LastName = "Goya",
                 BirthDate = new DateTime(1993, 04, 18),
@@ -65,7 +65,7 @@ namespace DataAccess.SeedData.IdentitySeedData
             };
             var student2 = new AppUser
             {
-                Id = "f78a22b2-e756-485f-8729-88003bacf1ff",
+                Id = Guid.Parse("f78a22b2-e756-485f-8729-88003bacf1ff"),
                 FirstName = "İsmail",
                 LastName = "Danışmaz",
                 BirthDate = new DateTime(1990, 06, 10),

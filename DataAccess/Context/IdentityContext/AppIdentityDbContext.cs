@@ -1,6 +1,7 @@
 ﻿using Core.Entities.UserEntities.Concrete;
 using DataAccess.Context.ApplicationContext;
 using DataAccess.SeedData.IdentitySeedData;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Context.IdentityContext
 {
-    public class AppIdentityDbContext : IdentityDbContext<AppUser>
+    public class AppIdentityDbContext : IdentityDbContext<AppUser , IdentityRole<Guid>, Guid>
     {
         //Npgsql'nin tarih ve saat verilerini ele alış biçimini eski sürümlerle uyumlu hale getirmek için yazılmıştır.
         static AppIdentityDbContext()

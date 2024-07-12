@@ -19,7 +19,7 @@ namespace Core.Entities.Concrete
         [MinLength(3)]
         public string Description { get; set; }
         [Required]
-        public string TeacherId { get; set; }
+        public Guid TeacherId { get; set; }
         public Teacher Teacher { get; set; }
         public ICollection<Student> Students { get; set; }
     }

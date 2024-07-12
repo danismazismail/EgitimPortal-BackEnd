@@ -14,27 +14,27 @@ namespace DataAccess.SeedData.IdentitySeedData
     {
         public void Configure(EntityTypeBuilder<IdentityRole> builder)
         {
-            var admin = new IdentityRole
+            var admin = new IdentityRole<Guid>
             {
-                Id= "52ff41a6-5f72-4cef-9300-64c156772f2c",
+                Id= Guid.Parse("52ff41a6-5f72-4cef-9300-64c156772f2c"),
                 Name = "admin",
                 NormalizedName = "ADMIN"
             };
-            var customerManager = new IdentityRole
+            var customerManager = new IdentityRole<Guid>
             {
-                Id = "c846cec9-78f6-4ac8-b353-f30f856affc8",
+                Id = Guid.Parse("c846cec9-78f6-4ac8-b353-f30f856affc8"),
                 Name = "customarManager",
                 NormalizedName = "CUSTOMERMANAGER"  
             };
-            var teacher = new IdentityRole
+            var teacher = new IdentityRole<Guid>
             {
-                Id = "e9c75c3c-40fb-4c15-a960-504e1099ac2f",
+                Id = Guid.Parse("e9c75c3c-40fb-4c15-a960-504e1099ac2f"),
                 Name = "teacher",
                 NormalizedName = "TEACHER"
             };
-            var student = new IdentityRole
+            var student = new IdentityRole<Guid>
             {
-                Id = "78521ce1-a9e3-47b9-9426-5ad7e669df26",
+                Id = Guid.Parse("78521ce1-a9e3-47b9-9426-5ad7e669df26"),
                 Name = "student",
                 NormalizedName = "STUDENT"
             };

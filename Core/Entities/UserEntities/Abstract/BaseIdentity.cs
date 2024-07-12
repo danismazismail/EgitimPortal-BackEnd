@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Entities.UserEntities.Abstract
 {
-    public class BaseIdentity : IdentityUser
+    public class BaseIdentity : IdentityUser<Guid>
     {
         private DateTime _createdDate = DateTime.Now;
         private Status _status = Status.Active;

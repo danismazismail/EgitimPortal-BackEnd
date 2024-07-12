@@ -12,7 +12,7 @@ namespace Core.Entities.Abstract
         private DateTime _createdDate=DateTime.Now;
         private Status _status = Status.Active;
 
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime CreatedDate { get => _createdDate; set => _createdDate = value; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
