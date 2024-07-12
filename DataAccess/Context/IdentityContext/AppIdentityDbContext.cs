@@ -17,7 +17,7 @@ namespace DataAccess.Context.IdentityContext
         //Npgsql'nin tarih ve saat verilerini ele alış biçimini eski sürümlerle uyumlu hale getirmek için yazılmıştır.
         static AppIdentityDbContext()
         {
-            AppContext.SetSwitch("Npqsql.EnableLegacyTimestampBehavior", true);
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior",isEnabled: true);
         }
 
         public AppIdentityDbContext()

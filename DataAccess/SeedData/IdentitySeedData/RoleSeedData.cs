@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.SeedData.IdentitySeedData
 {
-    public class RoleSeedData : IEntityTypeConfiguration<IdentityRole>
+    public class RoleSeedData : IEntityTypeConfiguration<IdentityRole<Guid>>
     {
-        public void Configure(EntityTypeBuilder<IdentityRole> builder)
+        public void Configure(EntityTypeBuilder<IdentityRole<Guid>> builder)
         {
             var admin = new IdentityRole<Guid>
             {
